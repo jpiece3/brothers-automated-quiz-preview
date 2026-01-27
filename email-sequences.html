@@ -1,0 +1,873 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Sequences - Brothers Automated Quiz Funnel</title>
+    <style>
+        :root {
+            --color-primary: #2563EB;
+            --color-secondary: #1E3A5F;
+            --color-accent: #F97316;
+            --color-bg: #F8FAFC;
+            --color-bg-card: #FFFFFF;
+            --color-text: #1E293B;
+            --color-text-secondary: #64748B;
+            --color-border: #E2E8F0;
+            --color-success: #10B981;
+            --color-warning: #F59E0B;
+            --color-info: #3B82F6;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--color-bg);
+            color: var(--color-text);
+            line-height: 1.6;
+            padding: 24px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 48px;
+            padding-bottom: 24px;
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--color-secondary);
+            margin-bottom: 8px;
+        }
+
+        .subtitle {
+            color: var(--color-text-secondary);
+            font-size: 1rem;
+        }
+
+        .stats-bar {
+            display: flex;
+            justify-content: center;
+            gap: 32px;
+            margin-top: 24px;
+            flex-wrap: wrap;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--color-primary);
+        }
+
+        .stat-label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--color-text-secondary);
+        }
+
+        .sequence-section {
+            margin-bottom: 48px;
+        }
+
+        .sequence-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 24px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid var(--color-border);
+        }
+
+        .sequence-badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 4px 12px;
+            font-size: 0.6875rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            border-radius: 2px;
+        }
+
+        .badge-welcome {
+            background: rgba(37, 99, 235, 0.1);
+            color: var(--color-primary);
+        }
+
+        .badge-cold {
+            background: rgba(59, 130, 246, 0.1);
+            color: var(--color-info);
+        }
+
+        .badge-warm {
+            background: rgba(245, 158, 11, 0.1);
+            color: var(--color-warning);
+        }
+
+        .badge-hot {
+            background: rgba(16, 185, 129, 0.1);
+            color: var(--color-success);
+        }
+
+        .badge-winback {
+            background: rgba(249, 115, 22, 0.1);
+            color: var(--color-accent);
+        }
+
+        .sequence-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+        }
+
+        .sequence-meta {
+            margin-left: auto;
+            font-size: 0.875rem;
+            color: var(--color-text-secondary);
+        }
+
+        .email-card {
+            background: var(--color-bg-card);
+            border: 1px solid var(--color-border);
+            border-radius: 4px;
+            margin-bottom: 16px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .email-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: var(--color-primary);
+        }
+
+        .email-card.cold::before {
+            background: var(--color-info);
+        }
+
+        .email-card.warm::before {
+            background: var(--color-warning);
+        }
+
+        .email-card.hot::before {
+            background: var(--color-success);
+        }
+
+        .email-card.winback::before {
+            background: var(--color-accent);
+        }
+
+        .email-header {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            padding: 16px 20px;
+            background: var(--color-bg);
+            border-bottom: 1px solid var(--color-border);
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .email-info {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .email-name {
+            font-weight: 600;
+            font-size: 1rem;
+            margin-bottom: 4px;
+        }
+
+        .email-subject {
+            color: var(--color-text-secondary);
+            font-size: 0.875rem;
+        }
+
+        .email-subject strong {
+            color: var(--color-text);
+        }
+
+        .email-timing {
+            text-align: right;
+        }
+
+        .email-day {
+            font-weight: 600;
+            color: var(--color-primary);
+            font-size: 0.875rem;
+        }
+
+        .email-sender {
+            font-size: 0.75rem;
+            color: var(--color-text-secondary);
+        }
+
+        .email-body {
+            padding: 20px;
+            font-size: 0.9375rem;
+            line-height: 1.7;
+            white-space: pre-wrap;
+        }
+
+        .email-body strong {
+            color: var(--color-secondary);
+        }
+
+        .email-footer {
+            padding: 12px 20px;
+            background: var(--color-bg);
+            border-top: 1px solid var(--color-border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .email-cta {
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--color-primary);
+        }
+
+        .email-id {
+            font-size: 0.75rem;
+            color: var(--color-text-secondary);
+            font-family: monospace;
+        }
+
+        footer {
+            text-align: center;
+            padding-top: 48px;
+            border-top: 1px solid var(--color-border);
+            color: var(--color-text-secondary);
+            font-size: 0.875rem;
+        }
+
+        @media (max-width: 640px) {
+            body {
+                padding: 16px;
+            }
+
+            h1 {
+                font-size: 1.5rem;
+            }
+
+            .stats-bar {
+                gap: 16px;
+            }
+
+            .sequence-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 8px;
+            }
+
+            .sequence-meta {
+                margin-left: 0;
+            }
+
+            .email-header {
+                flex-direction: column;
+            }
+
+            .email-timing {
+                text-align: left;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Email Sequences</h1>
+            <p class="subtitle">Brothers Automated Quiz Funnel</p>
+            <div class="stats-bar">
+                <div class="stat">
+                    <div class="stat-value">14</div>
+                    <div class="stat-label">Total Emails</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value">5</div>
+                    <div class="stat-label">Sequences</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value">10</div>
+                    <div class="stat-label">Days Max</div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Welcome Sequence -->
+        <section class="sequence-section">
+            <div class="sequence-header">
+                <span class="sequence-badge badge-welcome">All Leads</span>
+                <h2 class="sequence-title">Welcome Sequence</h2>
+                <span class="sequence-meta">3 emails | Days 0, 2, 5</span>
+            </div>
+
+            <div class="email-card">
+                <div class="email-header">
+                    <div class="email-info">
+                        <div class="email-name">Results Delivery</div>
+                        <div class="email-subject"><strong>Subject:</strong> Your blindspot revealed</div>
+                    </div>
+                    <div class="email-timing">
+                        <div class="email-day">Day 0</div>
+                        <div class="email-sender">James & John</div>
+                    </div>
+                </div>
+                <div class="email-body">Hey {{first_name}},
+
+Thanks for taking the quiz. Here's what we found:
+
+<strong>Your Profile: {{profile_name}}</strong>
+
+{{blindspot_revealed}}
+
+Look, we get it. We ran a food truck for 4.5 years. We know what it's like to chase every lead while doing literally everything else. The hustle is real.
+
+But here's what we learned: the businesses that scale aren't the ones that work harder. They're the ones that build systems.
+
+Your next step? Depends on where you're at. But we've got some ideas. Keep an eye on your inbox.
+
+Talk soon,
+James & John
+Brothers Automated
+
+P.S. - Reply to this email if you have questions about your results. We actually read these.</div>
+                <div class="email-footer">
+                    <span class="email-cta">CTA: Review results</span>
+                    <span class="email-id">WELCOME-01</span>
+                </div>
+            </div>
+
+            <div class="email-card">
+                <div class="email-header">
+                    <div class="email-info">
+                        <div class="email-name">Obstacle Buster</div>
+                        <div class="email-subject"><strong>Subject:</strong> The real reason leads slip away</div>
+                    </div>
+                    <div class="email-timing">
+                        <div class="email-day">Day 2</div>
+                        <div class="email-sender">James</div>
+                    </div>
+                </div>
+                <div class="email-body">Hey {{first_name}},
+
+Based on your quiz results, you're probably dealing with one of these:
+
+1. <strong>No time for marketing.</strong> You're too busy delivering for clients.
+2. <strong>Tools that don't talk.</strong> You have Mailchimp and Canva and a dozen other things. None of them are connected.
+3. <strong>Leads that don't convert.</strong> They show up. They just don't buy.
+
+Here's a quick tip based on your profile:
+
+{{profile_specific_tip}}
+
+Small shift. Big impact.
+
+Tomorrow I'll share a case study of a business that fixed this exact problem. Stay tuned.
+
+James</div>
+                <div class="email-footer">
+                    <span class="email-cta">CTA: Apply the tip</span>
+                    <span class="email-id">WELCOME-02</span>
+                </div>
+            </div>
+
+            <div class="email-card">
+                <div class="email-header">
+                    <div class="email-info">
+                        <div class="email-name">Soft Offer Intro</div>
+                        <div class="email-subject"><strong>Subject:</strong> What if leads came in while you slept?</div>
+                    </div>
+                    <div class="email-timing">
+                        <div class="email-day">Day 5</div>
+                        <div class="email-sender">John</div>
+                    </div>
+                </div>
+                <div class="email-body">Hey {{first_name}},
+
+Quick question: What if your lead generation worked harder than you do?
+
+That's the idea behind quiz funnels. They:
+- Qualify leads automatically
+- Segment based on answers
+- Deliver personalized follow-up
+
+All while you focus on serving clients.
+
+We build these for online business owners. Coaches. Consultants. E-commerce founders. Course creators.
+
+$2,500. 6 days. Done-for-you.
+
+If that sounds interesting, I'd love to show you how it works.
+
+{{cta_based_on_temperature}}
+
+No pressure. Just options.
+
+John</div>
+                <div class="email-footer">
+                    <span class="email-cta">CTA: See how it works</span>
+                    <span class="email-id">WELCOME-03</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Cold Nurture Sequence -->
+        <section class="sequence-section">
+            <div class="sequence-header">
+                <span class="sequence-badge badge-cold">Score 0-49</span>
+                <h2 class="sequence-title">Cold Nurture</h2>
+                <span class="sequence-meta">4 emails | Days 1, 3, 7, 10</span>
+            </div>
+
+            <div class="email-card cold">
+                <div class="email-header">
+                    <div class="email-info">
+                        <div class="email-name">Education Part 1</div>
+                        <div class="email-subject"><strong>Subject:</strong> Why most lead magnets fail</div>
+                    </div>
+                    <div class="email-timing">
+                        <div class="email-day">Day 1</div>
+                        <div class="email-sender">James</div>
+                    </div>
+                </div>
+                <div class="email-body">Hey {{first_name}},
+
+Here's a hard truth: most lead magnets fail because they collect the wrong information.
+
+Name and email? Great. You have a contact.
+
+But do you know:
+- What problem they're trying to solve?
+- How urgent it is?
+- What they've already tried?
+- Their budget?
+
+That's the difference between a lead and a qualified lead.
+
+A quiz captures ALL of that. Before you ever talk to them, you know exactly where they're at.
+
+Just something to think about.
+
+More tomorrow.
+
+James</div>
+                <div class="email-footer">
+                    <span class="email-cta">CTA: Think about your lead magnet</span>
+                    <span class="email-id">COLD-01</span>
+                </div>
+            </div>
+
+            <div class="email-card cold">
+                <div class="email-header">
+                    <div class="email-info">
+                        <div class="email-name">Education Part 2</div>
+                        <div class="email-subject"><strong>Subject:</strong> The segmentation secret</div>
+                    </div>
+                    <div class="email-timing">
+                        <div class="email-day">Day 3</div>
+                        <div class="email-sender">John</div>
+                    </div>
+                </div>
+                <div class="email-body">Hey {{first_name}},
+
+Quick story.
+
+Before we built quiz funnels, we sent the same email sequence to everyone. Generic advice. Generic pitch. Generic results.
+
+Then we learned about segmentation.
+
+Different leads need different messages:
+- <strong>Not ready?</strong> Educate them.
+- <strong>Considering options?</strong> Show proof.
+- <strong>Ready to buy?</strong> Make it easy.
+
+One lead magnet. Three paths. Completely different results.
+
+That's what a quiz funnel does automatically.
+
+Thought you'd find that useful.
+
+John</div>
+                <div class="email-footer">
+                    <span class="email-cta">CTA: Learn about segmentation</span>
+                    <span class="email-id">COLD-02</span>
+                </div>
+            </div>
+
+            <div class="email-card cold">
+                <div class="email-header">
+                    <div class="email-info">
+                        <div class="email-name">Problem Education</div>
+                        <div class="email-subject"><strong>Subject:</strong> The hidden cost of manual follow-up</div>
+                    </div>
+                    <div class="email-timing">
+                        <div class="email-day">Day 7</div>
+                        <div class="email-sender">James</div>
+                    </div>
+                </div>
+                <div class="email-body">Hey {{first_name}},
+
+Let's do some quick math.
+
+Say you get 50 leads per month. Without automation, you manually:
+- Send welcome emails
+- Remember who's interested
+- Follow up at the right time
+- Track who's ready to buy
+
+That's hours every week. Hours you could spend on clients. Or, you know, having a life.
+
+With a quiz funnel, all of that happens automatically. Leads get segmented. Follow-up is personalized. Hot leads get flagged.
+
+You just show up for the calls that matter.
+
+Something to consider.
+
+James</div>
+                <div class="email-footer">
+                    <span class="email-cta">CTA: Consider automation</span>
+                    <span class="email-id">COLD-03</span>
+                </div>
+            </div>
+
+            <div class="email-card cold">
+                <div class="email-header">
+                    <div class="email-info">
+                        <div class="email-name">Soft Check-in</div>
+                        <div class="email-subject"><strong>Subject:</strong> Still thinking about lead gen?</div>
+                    </div>
+                    <div class="email-timing">
+                        <div class="email-day">Day 10</div>
+                        <div class="email-sender">John</div>
+                    </div>
+                </div>
+                <div class="email-body">Hey {{first_name}},
+
+Just checking in.
+
+You took our quiz a while back. Since then, we've shared some ideas about:
+- Why most lead magnets fail
+- The power of segmentation
+- The hidden cost of manual follow-up
+
+Where are you at? Still thinking about this stuff?
+
+If you have questions, just reply. We're real people and we actually respond.
+
+If you're curious about working together, here's how that looks: {{link_to_how_it_works}}
+
+No rush. Just wanted to say hi.
+
+John</div>
+                <div class="email-footer">
+                    <span class="email-cta">CTA: Reply or learn more</span>
+                    <span class="email-id">COLD-04</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Warm Activation Sequence -->
+        <section class="sequence-section">
+            <div class="sequence-header">
+                <span class="sequence-badge badge-warm">Score 50-79</span>
+                <h2 class="sequence-title">Warm Activation</h2>
+                <span class="sequence-meta">3 emails | Days 1, 3, 6</span>
+            </div>
+
+            <div class="email-card warm">
+                <div class="email-header">
+                    <div class="email-info">
+                        <div class="email-name">Case Study</div>
+                        <div class="email-subject"><strong>Subject:</strong> How Sarah doubled her conversion rate</div>
+                    </div>
+                    <div class="email-timing">
+                        <div class="email-day">Day 1</div>
+                        <div class="email-sender">James</div>
+                    </div>
+                </div>
+                <div class="email-body">Hey {{first_name}},
+
+Meet Sarah. She runs an online coaching business.
+
+Before: 100 leads/month, 2 sales. That's a 2% conversion rate.
+
+Her problem? She was treating every lead the same. Generic emails. Generic follow-up. No segmentation.
+
+We built her a quiz funnel. 7 questions. 3 result paths. Personalized email sequences for each.
+
+After: 100 leads/month, 8 sales. 8% conversion rate.
+
+Same traffic. Same offer. Different system.
+
+Want to see how this could work for you?
+
+{{cta_to_case_study_or_call}}
+
+James</div>
+                <div class="email-footer">
+                    <span class="email-cta">CTA: See the case study</span>
+                    <span class="email-id">WARM-01</span>
+                </div>
+            </div>
+
+            <div class="email-card warm">
+                <div class="email-header">
+                    <div class="email-info">
+                        <div class="email-name">Objection Handler</div>
+                        <div class="email-subject"><strong>Subject:</strong> "I don't have time to set this up"</div>
+                    </div>
+                    <div class="email-timing">
+                        <div class="email-day">Day 3</div>
+                        <div class="email-sender">John</div>
+                    </div>
+                </div>
+                <div class="email-body">Hey {{first_name}},
+
+The #1 thing people say to us: "I don't have time to set this up."
+
+That's exactly why we do it for you.
+
+Here's what your involvement looks like:
+1. One 30-minute call to understand your business
+2. Review and approve the copy we write
+3. That's it
+
+We handle the tech. The design. The automation. The deployment.
+
+6 days later, you have a complete quiz funnel running.
+
+You don't need time. You need the right partner.
+
+{{cta_to_book_call}}
+
+John</div>
+                <div class="email-footer">
+                    <span class="email-cta">CTA: Book a call</span>
+                    <span class="email-id">WARM-02</span>
+                </div>
+            </div>
+
+            <div class="email-card warm">
+                <div class="email-header">
+                    <div class="email-info">
+                        <div class="email-name">Clear Offer</div>
+                        <div class="email-subject"><strong>Subject:</strong> Ready when you are</div>
+                    </div>
+                    <div class="email-timing">
+                        <div class="email-day">Day 6</div>
+                        <div class="email-sender">James</div>
+                    </div>
+                </div>
+                <div class="email-body">Hey {{first_name}},
+
+In case you're wondering what working with us looks like:
+
+<strong>Done-for-You Quiz Funnel - $2,500</strong>
+
+What's included:
+- Custom quiz (7 questions, personalized to your business)
+- Landing page that converts
+- 3 result pages (hot, warm, cold)
+- 14 automated emails
+- Analytics dashboard
+- Deployed to your domain
+
+Timeline: 6 days
+
+What you do: One call. Approve copy. Done.
+
+If you're ready to stop chasing leads and start attracting the right ones, let's talk.
+
+{{cta_to_book_call}}
+
+James</div>
+                <div class="email-footer">
+                    <span class="email-cta">CTA: Book a call</span>
+                    <span class="email-id">WARM-03</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Hot Path Sequence -->
+        <section class="sequence-section">
+            <div class="sequence-header">
+                <span class="sequence-badge badge-hot">Score 80-100</span>
+                <h2 class="sequence-title">Hot Path</h2>
+                <span class="sequence-meta">2 emails | Days 1, 4</span>
+            </div>
+
+            <div class="email-card hot">
+                <div class="email-header">
+                    <div class="email-info">
+                        <div class="email-name">Direct CTA</div>
+                        <div class="email-subject"><strong>Subject:</strong> Let's build your funnel</div>
+                    </div>
+                    <div class="email-timing">
+                        <div class="email-day">Day 1</div>
+                        <div class="email-sender">James & John</div>
+                    </div>
+                </div>
+                <div class="email-body">Hey {{first_name}},
+
+Your quiz score tells us you're ready to make a move. You've got the awareness. You've got the urgency. You just need the right system.
+
+Let's get on a call.
+
+15 minutes. We'll talk through:
+- Your current lead gen setup
+- Where the gaps are
+- How a quiz funnel solves them
+
+No pitch. Just clarity.
+
+{{calendar_link}}
+
+Talk soon,
+James & John
+
+P.S. - We only take on 4 new clients per month. If you're ready, don't wait too long.</div>
+                <div class="email-footer">
+                    <span class="email-cta">CTA: Book strategy call</span>
+                    <span class="email-id">HOT-01</span>
+                </div>
+            </div>
+
+            <div class="email-card hot">
+                <div class="email-header">
+                    <div class="email-info">
+                        <div class="email-name">Follow-up</div>
+                        <div class="email-subject"><strong>Subject:</strong> Quick follow-up</div>
+                    </div>
+                    <div class="email-timing">
+                        <div class="email-day">Day 4</div>
+                        <div class="email-sender">James</div>
+                    </div>
+                </div>
+                <div class="email-body">Hey {{first_name}},
+
+Sent you an email a few days ago about getting on a call.
+
+No worries if timing isn't right. But if you're still thinking about fixing your lead generation, I'm here.
+
+One quick question: What's holding you back?
+
+Reply and let me know. I'm curious.
+
+James
+
+{{calendar_link_again}}</div>
+                <div class="email-footer">
+                    <span class="email-cta">CTA: Reply or book call</span>
+                    <span class="email-id">HOT-02</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Win-Back Sequence -->
+        <section class="sequence-section">
+            <div class="sequence-header">
+                <span class="sequence-badge badge-winback">Inactive</span>
+                <h2 class="sequence-title">Win-Back</h2>
+                <span class="sequence-meta">2 emails | Days 1, 5 after no engagement</span>
+            </div>
+
+            <div class="email-card winback">
+                <div class="email-header">
+                    <div class="email-info">
+                        <div class="email-name">Re-engagement</div>
+                        <div class="email-subject"><strong>Subject:</strong> Did we lose you?</div>
+                    </div>
+                    <div class="email-timing">
+                        <div class="email-day">Day 1</div>
+                        <div class="email-sender">John</div>
+                    </div>
+                </div>
+                <div class="email-body">Hey {{first_name}},
+
+Noticed you haven't opened our recent emails. Totally get it. Inboxes are overwhelming.
+
+Quick question: Are you still thinking about improving your lead generation?
+
+If yes, reply with "YES" and I'll send you one thing that might help.
+
+If no, no hard feelings. Just reply "REMOVE" and we'll take you off the list.
+
+Either way, thanks for taking the quiz.
+
+John</div>
+                <div class="email-footer">
+                    <span class="email-cta">CTA: Reply YES or REMOVE</span>
+                    <span class="email-id">WINBACK-01</span>
+                </div>
+            </div>
+
+            <div class="email-card winback">
+                <div class="email-header">
+                    <div class="email-info">
+                        <div class="email-name">Final Choice</div>
+                        <div class="email-subject"><strong>Subject:</strong> Last email from us</div>
+                    </div>
+                    <div class="email-timing">
+                        <div class="email-day">Day 5</div>
+                        <div class="email-sender">James</div>
+                    </div>
+                </div>
+                <div class="email-body">Hey {{first_name}},
+
+This is the last email you'll get from us unless you take action.
+
+Here are your options:
+
+<strong>Want to stay?</strong> Reply "KEEP ME" and we'll keep you on the list for occasional updates and tips.
+
+<strong>Ready to talk?</strong> {{calendar_link}} - Let's figure out if we can help.
+
+<strong>Done with emails?</strong> Just ignore this and we'll remove you automatically.
+
+No hard feelings either way. We only want to send emails to people who want them.
+
+Thanks for taking the quiz. We hope something we shared was useful.
+
+James</div>
+                <div class="email-footer">
+                    <span class="email-cta">CTA: Reply or book call</span>
+                    <span class="email-id">WINBACK-02</span>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            <p>Email sequences for Brothers Automated Quiz Funnel</p>
+            <p>14 emails | 5 sequences | Personalized by temperature and profile</p>
+        </footer>
+    </div>
+</body>
+</html>
