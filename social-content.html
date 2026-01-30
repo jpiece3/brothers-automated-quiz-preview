@@ -1,0 +1,1019 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>30-Day Social Content Strategy - Brothers Automated</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --color-primary: #2563EB;
+            --color-primary-dark: #1D4ED8;
+            --color-secondary: #1E3A5F;
+            --color-accent: #F97316;
+            --color-bg: #F8FAFC;
+            --color-bg-card: #FFFFFF;
+            --color-text: #1E293B;
+            --color-text-secondary: #64748B;
+            --color-text-muted: #94A3B8;
+            --color-border: #E2E8F0;
+            --color-success: #10B981;
+            --color-warning: #F59E0B;
+
+            --color-linkedin: #0A66C2;
+            --color-linkedin-bg: #E8F1FB;
+            --color-instagram: #E1306C;
+            --color-instagram-bg: #FCE4EC;
+            --color-tiktok: #010101;
+            --color-tiktok-bg: #F0F0F0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--color-bg);
+            color: var(--color-text);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Back Link */
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+            font-size: 0.875rem;
+            font-weight: 500;
+            margin-bottom: 24px;
+            transition: color 0.2s;
+        }
+
+        .back-link:hover {
+            color: #FFFFFF;
+        }
+
+        .back-link svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+            color: #FFFFFF;
+            padding: 60px 0;
+            margin-bottom: 40px;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 12px;
+        }
+
+        header .subtitle {
+            font-size: 1.25rem;
+            opacity: 0.9;
+            margin-bottom: 24px;
+        }
+
+        .badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 8px 16px;
+            border-radius: 100px;
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+
+        /* Sections */
+        section {
+            background: var(--color-bg-card);
+            border-radius: 16px;
+            padding: 32px;
+            margin-bottom: 32px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+
+        section h2 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--color-secondary);
+            margin-bottom: 24px;
+            padding-bottom: 12px;
+            border-bottom: 3px solid var(--color-primary);
+            display: inline-block;
+        }
+
+        section h3 {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: var(--color-text);
+            margin: 24px 0 12px;
+        }
+
+        /* Content Pillars */
+        .pillars-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .pillar-card {
+            background: var(--color-bg);
+            border-radius: 12px;
+            padding: 24px;
+            border-left: 4px solid var(--color-primary);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .pillar-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.1);
+        }
+
+        .pillar-card:nth-child(2) {
+            border-left-color: var(--color-accent);
+        }
+
+        .pillar-card:nth-child(3) {
+            border-left-color: var(--color-success);
+        }
+
+        .pillar-card:nth-child(4) {
+            border-left-color: var(--color-warning);
+        }
+
+        .pillar-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            background: var(--color-primary);
+            color: #FFFFFF;
+            font-weight: 700;
+            font-size: 0.875rem;
+            margin-bottom: 12px;
+        }
+
+        .pillar-card:nth-child(2) .pillar-number { background: var(--color-accent); }
+        .pillar-card:nth-child(3) .pillar-number { background: var(--color-success); }
+        .pillar-card:nth-child(4) .pillar-number { background: var(--color-warning); }
+
+        .pillar-card h4 {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--color-secondary);
+            margin-bottom: 8px;
+        }
+
+        .pillar-card p {
+            font-size: 0.875rem;
+            color: var(--color-text-secondary);
+            margin-bottom: 12px;
+        }
+
+        .pillar-audience {
+            display: inline-block;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            padding: 4px 10px;
+            border-radius: 100px;
+            background: rgba(37, 99, 235, 0.1);
+            color: var(--color-primary);
+        }
+
+        .pillar-card:nth-child(2) .pillar-audience {
+            background: rgba(249, 115, 22, 0.1);
+            color: var(--color-accent);
+        }
+
+        .pillar-card:nth-child(3) .pillar-audience {
+            background: rgba(16, 185, 129, 0.1);
+            color: var(--color-success);
+        }
+
+        .pillar-card:nth-child(4) .pillar-audience {
+            background: rgba(245, 158, 11, 0.1);
+            color: var(--color-warning);
+        }
+
+        /* Platform Strategy */
+        .platforms-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 24px;
+        }
+
+        .platform-card {
+            border-radius: 16px;
+            padding: 24px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .platform-card.linkedin {
+            background: var(--color-linkedin-bg);
+            border: 2px solid var(--color-linkedin);
+        }
+
+        .platform-card.instagram {
+            background: var(--color-instagram-bg);
+            border: 2px solid var(--color-instagram);
+        }
+
+        .platform-card.tiktok {
+            background: var(--color-tiktok-bg);
+            border: 2px solid var(--color-tiktok);
+        }
+
+        .platform-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 100px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 12px;
+            color: #FFFFFF;
+        }
+
+        .platform-card.linkedin .platform-badge { background: var(--color-linkedin); }
+        .platform-card.instagram .platform-badge { background: var(--color-instagram); }
+        .platform-card.tiktok .platform-badge { background: var(--color-tiktok); }
+
+        .platform-card h4 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+            color: var(--color-text);
+        }
+
+        .platform-detail {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(0,0,0,0.08);
+            font-size: 0.875rem;
+        }
+
+        .platform-detail:last-child {
+            border-bottom: none;
+        }
+
+        .platform-detail-label {
+            font-weight: 600;
+            color: var(--color-text);
+        }
+
+        .platform-detail-value {
+            color: var(--color-text-secondary);
+            text-align: right;
+        }
+
+        /* Week Calendar */
+        .week-section {
+            margin-bottom: 32px;
+        }
+
+        .week-section:last-child {
+            margin-bottom: 0;
+        }
+
+        .week-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 20px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .week-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+            color: #FFFFFF;
+            font-weight: 800;
+            font-size: 1.125rem;
+            flex-shrink: 0;
+        }
+
+        .week-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--color-secondary);
+        }
+
+        .week-theme {
+            font-size: 0.875rem;
+            color: var(--color-text-secondary);
+        }
+
+        .post-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .post-card {
+            display: flex;
+            gap: 16px;
+            padding: 16px 20px;
+            background: var(--color-bg);
+            border-radius: 10px;
+            border-left: 4px solid transparent;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .post-card:hover {
+            transform: translateX(4px);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+        }
+
+        .post-card.linkedin { border-left-color: var(--color-linkedin); }
+        .post-card.instagram { border-left-color: var(--color-instagram); }
+        .post-card.tiktok { border-left-color: var(--color-tiktok); }
+
+        .post-day {
+            flex-shrink: 0;
+            width: 44px;
+            text-align: center;
+        }
+
+        .post-day-name {
+            font-weight: 700;
+            font-size: 0.8125rem;
+            color: var(--color-text);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .post-day-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            margin: 6px auto 0;
+        }
+
+        .post-card.linkedin .post-day-dot { background: var(--color-linkedin); }
+        .post-card.instagram .post-day-dot { background: var(--color-instagram); }
+        .post-card.tiktok .post-day-dot { background: var(--color-tiktok); }
+
+        .post-content {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .post-platform-tag {
+            display: inline-block;
+            font-size: 0.6875rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            padding: 2px 8px;
+            border-radius: 4px;
+            margin-bottom: 6px;
+            color: #FFFFFF;
+        }
+
+        .post-card.linkedin .post-platform-tag { background: var(--color-linkedin); }
+        .post-card.instagram .post-platform-tag { background: var(--color-instagram); }
+        .post-card.tiktok .post-platform-tag { background: var(--color-tiktok); }
+
+        .post-title {
+            font-weight: 600;
+            font-size: 0.9375rem;
+            color: var(--color-text);
+            margin-bottom: 4px;
+        }
+
+        .post-description {
+            font-size: 0.8125rem;
+            color: var(--color-text-secondary);
+        }
+
+        .post-format {
+            display: inline-block;
+            font-size: 0.6875rem;
+            font-weight: 500;
+            color: var(--color-text-muted);
+            background: var(--color-bg-card);
+            padding: 2px 8px;
+            border-radius: 4px;
+            border: 1px solid var(--color-border);
+            margin-top: 6px;
+        }
+
+        /* Stats Row */
+        .stats-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 20px;
+            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+            border-radius: 12px;
+            color: #FFFFFF;
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 800;
+            line-height: 1;
+            margin-bottom: 4px;
+        }
+
+        .stat-label {
+            font-size: 0.75rem;
+            opacity: 0.9;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 40px 0;
+            color: var(--color-text-secondary);
+            font-size: 0.875rem;
+        }
+
+        footer p {
+            margin-bottom: 4px;
+        }
+
+        /* Responsive */
+        @media (max-width: 640px) {
+            header {
+                padding: 40px 0;
+            }
+
+            header h1 {
+                font-size: 1.75rem;
+            }
+
+            header .subtitle {
+                font-size: 1rem;
+            }
+
+            section {
+                padding: 20px;
+                border-radius: 12px;
+            }
+
+            .pillars-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .platforms-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .post-card {
+                flex-direction: column;
+                gap: 8px;
+                padding: 14px 16px;
+            }
+
+            .post-day {
+                width: auto;
+                text-align: left;
+                display: flex;
+                align-items: center;
+                gap: 8px;
+            }
+
+            .post-day-dot {
+                margin: 0;
+            }
+
+            .stat-number {
+                font-size: 1.5rem;
+            }
+
+            .week-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 8px;
+            }
+
+            .stats-row {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <a href="index.html" class="back-link">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18" />
+                </svg>
+                Back to Preview
+            </a>
+            <span class="badge">Strategy Pack - Social Content</span>
+            <h1>30-Day Social Content Strategy</h1>
+            <p class="subtitle">A complete content calendar to promote your quiz funnel across platforms.</p>
+        </div>
+    </header>
+
+    <main class="container">
+
+        <!-- Overview Stats -->
+        <section>
+            <div class="stats-row">
+                <div class="stat-item">
+                    <div class="stat-number">30</div>
+                    <div class="stat-label">Days of Content</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">20</div>
+                    <div class="stat-label">Total Posts</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">3</div>
+                    <div class="stat-label">Platforms</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">4</div>
+                    <div class="stat-label">Content Pillars</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Content Pillars -->
+        <section>
+            <h2>Content Pillars</h2>
+            <p style="color: var(--color-text-secondary); margin-bottom: 24px;">Every post maps to one of these four strategic pillars. This keeps your content focused and your audience moving through the funnel.</p>
+            <div class="pillars-grid">
+                <div class="pillar-card">
+                    <div class="pillar-number">1</div>
+                    <h4>Quiz Funnels 101</h4>
+                    <p>Educational content explaining what quiz funnels are and why they work. Breaks down the concept for people who have never heard of it.</p>
+                    <span class="pillar-audience">Best for: Cold audiences</span>
+                </div>
+                <div class="pillar-card">
+                    <div class="pillar-number">2</div>
+                    <h4>Lead Gen for Your Industry</h4>
+                    <p>Coaches, consultants, e-commerce specific tips. Speaks directly to the verticals Brothers Automated serves with niche-relevant examples.</p>
+                    <span class="pillar-audience">Best for: Targeted reach</span>
+                </div>
+                <div class="pillar-card">
+                    <div class="pillar-number">3</div>
+                    <h4>Automation Workflows</h4>
+                    <p>How-to content and case studies about automation. Demonstrates technical credibility and shows the "before and after" of implementation.</p>
+                    <span class="pillar-audience">Best for: Warm audiences</span>
+                </div>
+                <div class="pillar-card">
+                    <div class="pillar-number">4</div>
+                    <h4>DIY vs Done-For-You</h4>
+                    <p>Comparison content that positions the service. Helps prospects self-select into the done-for-you offer by showing the effort gap honestly.</p>
+                    <span class="pillar-audience">Best for: Conversion</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Platform Strategy -->
+        <section>
+            <h2>Platform Strategy</h2>
+            <p style="color: var(--color-text-secondary); margin-bottom: 24px;">Each platform serves a different audience and purpose. Here is how to approach each one for maximum impact.</p>
+            <div class="platforms-grid">
+                <div class="platform-card linkedin">
+                    <span class="platform-badge">LinkedIn</span>
+                    <h4>LinkedIn</h4>
+                    <div class="platform-detail">
+                        <span class="platform-detail-label">Best for</span>
+                        <span class="platform-detail-value">B2B coaches, consultants</span>
+                    </div>
+                    <div class="platform-detail">
+                        <span class="platform-detail-label">Post frequency</span>
+                        <span class="platform-detail-value">3x / week</span>
+                    </div>
+                    <div class="platform-detail">
+                        <span class="platform-detail-label">Content types</span>
+                        <span class="platform-detail-value">Educational posts, case studies, polls</span>
+                    </div>
+                    <div class="platform-detail">
+                        <span class="platform-detail-label">Best posting time</span>
+                        <span class="platform-detail-value">Tue - Thu, 8 - 10 AM</span>
+                    </div>
+                </div>
+
+                <div class="platform-card instagram">
+                    <span class="platform-badge">Instagram</span>
+                    <h4>Instagram</h4>
+                    <div class="platform-detail">
+                        <span class="platform-detail-label">Best for</span>
+                        <span class="platform-detail-value">Coaches, course creators</span>
+                    </div>
+                    <div class="platform-detail">
+                        <span class="platform-detail-label">Post frequency</span>
+                        <span class="platform-detail-value">4x / week + stories daily</span>
+                    </div>
+                    <div class="platform-detail">
+                        <span class="platform-detail-label">Content types</span>
+                        <span class="platform-detail-value">Carousel tips, reels, quiz teasers</span>
+                    </div>
+                    <div class="platform-detail">
+                        <span class="platform-detail-label">Best posting time</span>
+                        <span class="platform-detail-value">Mon - Fri, 11 AM - 1 PM</span>
+                    </div>
+                </div>
+
+                <div class="platform-card tiktok">
+                    <span class="platform-badge">TikTok</span>
+                    <h4>TikTok</h4>
+                    <div class="platform-detail">
+                        <span class="platform-detail-label">Best for</span>
+                        <span class="platform-detail-value">Broader reach, younger audience</span>
+                    </div>
+                    <div class="platform-detail">
+                        <span class="platform-detail-label">Post frequency</span>
+                        <span class="platform-detail-value">3 - 5x / week</span>
+                    </div>
+                    <div class="platform-detail">
+                        <span class="platform-detail-label">Content types</span>
+                        <span class="platform-detail-value">Quick tips, food truck hooks, quiz reveals</span>
+                    </div>
+                    <div class="platform-detail">
+                        <span class="platform-detail-label">Best posting time</span>
+                        <span class="platform-detail-value">Tue - Sat, 7 - 9 PM</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Week-by-Week Calendar -->
+        <section>
+            <h2>Week-by-Week Calendar</h2>
+            <p style="color: var(--color-text-secondary); margin-bottom: 32px;">Each week has a strategic theme that moves your audience from awareness to engagement. Posts are color-coded by platform.</p>
+
+            <!-- Week 1 -->
+            <div class="week-section">
+                <div class="week-header">
+                    <div class="week-number">1</div>
+                    <div>
+                        <div class="week-title">Week 1 -- Awareness</div>
+                        <div class="week-theme">Goal: Introduce the concept. Reach cold audiences. Build curiosity.</div>
+                    </div>
+                </div>
+                <div class="post-list">
+                    <div class="post-card linkedin">
+                        <div class="post-day">
+                            <div class="post-day-name">Mon</div>
+                            <div class="post-day-dot"></div>
+                        </div>
+                        <div class="post-content">
+                            <span class="post-platform-tag">LinkedIn</span>
+                            <div class="post-title">"The #1 reason your leads aren't converting"</div>
+                            <div class="post-description">Educational post about lead qualification. Frame the problem: most businesses collect contacts, not qualified leads. End with a question to drive comments.</div>
+                            <span class="post-format">Educational Post</span>
+                        </div>
+                    </div>
+
+                    <div class="post-card instagram">
+                        <div class="post-day">
+                            <div class="post-day-name">Tue</div>
+                            <div class="post-day-dot"></div>
+                        </div>
+                        <div class="post-content">
+                            <span class="post-platform-tag">Instagram</span>
+                            <div class="post-title">"5 signs your lead gen has a blindspot"</div>
+                            <div class="post-description">Tip carousel (5 slides + CTA). Each slide reveals one sign: inconsistent leads, low conversions, no segmentation, manual follow-up, zero data on who visited. Final slide: "Take the quiz to find yours."</div>
+                            <span class="post-format">Carousel (5 slides)</span>
+                        </div>
+                    </div>
+
+                    <div class="post-card tiktok">
+                        <div class="post-day">
+                            <div class="post-day-name">Wed</div>
+                            <div class="post-day-dot"></div>
+                        </div>
+                        <div class="post-content">
+                            <span class="post-platform-tag">TikTok</span>
+                            <div class="post-title">"We ran a food truck for 4.5 years. Here's what we learned about leads."</div>
+                            <div class="post-description">Origin story hook. Start with the food truck visual, pivot to the lesson: every customer interaction taught them something about qualification. Keep it under 60 seconds.</div>
+                            <span class="post-format">Story Hook (60s)</span>
+                        </div>
+                    </div>
+
+                    <div class="post-card linkedin">
+                        <div class="post-day">
+                            <div class="post-day-name">Thu</div>
+                            <div class="post-day-dot"></div>
+                        </div>
+                        <div class="post-content">
+                            <span class="post-platform-tag">LinkedIn</span>
+                            <div class="post-title">Poll: "What's your biggest lead gen challenge?"</div>
+                            <div class="post-description">LinkedIn poll with 4 options: Not enough leads / Wrong leads / No time for follow-up / Don't know what's working. Drives engagement and gives data for future content.</div>
+                            <span class="post-format">Poll (Engagement)</span>
+                        </div>
+                    </div>
+
+                    <div class="post-card instagram">
+                        <div class="post-day">
+                            <div class="post-day-name">Fri</div>
+                            <div class="post-day-dot"></div>
+                        </div>
+                        <div class="post-content">
+                            <span class="post-platform-tag">Instagram</span>
+                            <div class="post-title">"Quiz funnel vs regular form -- the numbers don't lie"</div>
+                            <div class="post-description">Reel showing side-by-side comparison. Form: 2-5% conversion. Quiz funnel: 10-40% conversion. Use on-screen text with punchy edits. End with: "Which one are you using?"</div>
+                            <span class="post-format">Reel (Comparison)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Week 2 -->
+            <div class="week-section">
+                <div class="week-header">
+                    <div class="week-number">2</div>
+                    <div>
+                        <div class="week-title">Week 2 -- Credibility</div>
+                        <div class="week-theme">Goal: Build trust. Show proof. Warm up engaged followers.</div>
+                    </div>
+                </div>
+                <div class="post-list">
+                    <div class="post-card linkedin">
+                        <div class="post-day">
+                            <div class="post-day-name">Mon</div>
+                            <div class="post-day-dot"></div>
+                        </div>
+                        <div class="post-content">
+                            <span class="post-platform-tag">LinkedIn</span>
+                            <div class="post-title">"How one coach went from 5 leads/month to 50 with one quiz"</div>
+                            <div class="post-description">Case study format. Set the scene: coach was posting daily, getting crickets. Implemented a quiz funnel. 30 days later: 10x leads, 3 new clients. Share specific numbers and the before/after.</div>
+                            <span class="post-format">Case Study</span>
+                        </div>
+                    </div>
+
+                    <div class="post-card instagram">
+                        <div class="post-day">
+                            <div class="post-day-name">Tue</div>
+                            <div class="post-day-dot"></div>
+                        </div>
+                        <div class="post-content">
+                            <span class="post-platform-tag">Instagram</span>
+                            <div class="post-title">"Behind the scenes: building a quiz funnel"</div>
+                            <div class="post-description">BTS carousel showing the process: research, question design, scoring logic, result pages, email sequences, deployment. Makes the service tangible. Shows craftsmanship without revealing the recipe.</div>
+                            <span class="post-format">Carousel (BTS, 6 slides)</span>
+                        </div>
+                    </div>
+
+                    <div class="post-card tiktok">
+                        <div class="post-day">
+                            <div class="post-day-name">Wed</div>
+                            <div class="post-day-dot"></div>
+                        </div>
+                        <div class="post-content">
+                            <span class="post-platform-tag">TikTok</span>
+                            <div class="post-title">"Stop. Collecting. Email. Addresses. Start qualifying leads."</div>
+                            <div class="post-description">Punchy, fast-paced tip. Each word gets its own beat. Then break down the difference: an email is a contact, a qualified lead has told you their problem, budget, and timeline. Under 45 seconds.</div>
+                            <span class="post-format">Quick Tip (45s)</span>
+                        </div>
+                    </div>
+
+                    <div class="post-card linkedin">
+                        <div class="post-day">
+                            <div class="post-day-name">Thu</div>
+                            <div class="post-day-dot"></div>
+                        </div>
+                        <div class="post-content">
+                            <span class="post-platform-tag">LinkedIn</span>
+                            <div class="post-title">"The tech stack that replaces 3 marketing tools"</div>
+                            <div class="post-description">Educational breakdown: Most small businesses pay for a form builder + email tool + CRM. A quiz funnel replaces all three. Walk through the stack: Astro + Supabase + Resend. No jargon, just outcomes.</div>
+                            <span class="post-format">Educational Post</span>
+                        </div>
+                    </div>
+
+                    <div class="post-card instagram">
+                        <div class="post-day">
+                            <div class="post-day-name">Fri</div>
+                            <div class="post-day-dot"></div>
+                        </div>
+                        <div class="post-content">
+                            <span class="post-platform-tag">Instagram</span>
+                            <div class="post-title">"Your blindspot revealed" -- quiz teaser with CTA</div>
+                            <div class="post-description">Reel teasing the quiz. Show a quick screen recording of taking the quiz, then the reveal moment. Create FOMO: "427 business owners have already found theirs." Link in bio CTA.</div>
+                            <span class="post-format">Reel (Quiz Teaser)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Week 3 -->
+            <div class="week-section">
+                <div class="week-header">
+                    <div class="week-number">3</div>
+                    <div>
+                        <div class="week-title">Week 3 -- Conversion</div>
+                        <div class="week-theme">Goal: Drive quiz completions. Convert warm leads. Direct promotion.</div>
+                    </div>
+                </div>
+                <div class="post-list">
+                    <div class="post-card linkedin">
+                        <div class="post-day">
+                            <div class="post-day-name">Mon</div>
+                            <div class="post-day-dot"></div>
+                        </div>
+                        <div class="post-content">
+                            <span class="post-platform-tag">LinkedIn</span>
+                            <div class="post-title">"Why I stopped using Mailchimp for lead gen"</div>
+                            <div class="post-description">Contrarian take that gets attention. Not anti-Mailchimp, but anti-using-the-wrong-tool. The point: email tools collect contacts, quiz funnels qualify leads. Different tools for different jobs.</div>
+                            <span class="post-format">Contrarian Take</span>
+                        </div>
+                    </div>
+
+                    <div class="post-card instagram">
+                        <div class="post-day">
+                            <div class="post-day-name">Tue</div>
+                            <div class="post-day-dot"></div>
+                        </div>
+                        <div class="post-content">
+                            <span class="post-platform-tag">Instagram</span>
+                            <div class="post-title">"Take our free quiz: What's Your Lead Gen Blindspot?"</div>
+                            <div class="post-description">Direct promotion carousel. Slide 1: hook question. Slides 2-4: what you will learn (your profile, your blindspot, what to do next). Slide 5: CTA with link in bio. Clear and direct -- this is the conversion post.</div>
+                            <span class="post-format">Carousel (Direct Promo, 5 slides)</span>
+                        </div>
+                    </div>
+
+                    <div class="post-card tiktok">
+                        <div class="post-day">
+                            <div class="post-day-name">Wed</div>
+                            <div class="post-day-dot"></div>
+                        </div>
+                        <div class="post-content">
+                            <span class="post-platform-tag">TikTok</span>
+                            <div class="post-title">"POV: Your quiz funnel qualifies leads at 3am while you sleep"</div>
+                            <div class="post-description">Lifestyle/aspirational format. Split screen: left side is you sleeping, right side shows the quiz funnel working -- new lead comes in, gets scored, receives personalized email. The automation dream, visualized.</div>
+                            <span class="post-format">POV / Lifestyle (45s)</span>
+                        </div>
+                    </div>
+
+                    <div class="post-card linkedin">
+                        <div class="post-day">
+                            <div class="post-day-name">Thu</div>
+                            <div class="post-day-dot"></div>
+                        </div>
+                        <div class="post-content">
+                            <span class="post-platform-tag">LinkedIn</span>
+                            <div class="post-title">"I used to spend 15 hrs/week on lead gen. Now I spend 2."</div>
+                            <div class="post-description">Transformation story. Before: manually following up, creating content with no strategy, chasing cold leads. After: quiz funnel runs 24/7, leads self-qualify, email sequences do the nurturing. Personal and specific.</div>
+                            <span class="post-format">Transformation Story</span>
+                        </div>
+                    </div>
+
+                    <div class="post-card instagram">
+                        <div class="post-day">
+                            <div class="post-day-name">Fri</div>
+                            <div class="post-day-dot"></div>
+                        </div>
+                        <div class="post-content">
+                            <span class="post-platform-tag">Instagram</span>
+                            <div class="post-title">"Quiz results: which profile are you?"</div>
+                            <div class="post-description">Share results format. Show all 5 quiz profiles (Overwhelmed Operator, DIY Marketer, Scaling Struggler, Tech-Hesitant Traditionalist, Growth-Ready Investor). Ask followers to comment which one they relate to most.</div>
+                            <span class="post-format">Interactive (Results Share)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Week 4 -->
+            <div class="week-section">
+                <div class="week-header">
+                    <div class="week-number">4</div>
+                    <div>
+                        <div class="week-title">Week 4 -- Community</div>
+                        <div class="week-theme">Goal: Deepen engagement. Build relationships. Seed repeat awareness.</div>
+                    </div>
+                </div>
+                <div class="post-list">
+                    <div class="post-card linkedin">
+                        <div class="post-day">
+                            <div class="post-day-name">Mon</div>
+                            <div class="post-day-dot"></div>
+                        </div>
+                        <div class="post-content">
+                            <span class="post-platform-tag">LinkedIn</span>
+                            <div class="post-title">"Ask me anything about quiz funnels"</div>
+                            <div class="post-description">Open engagement post. Invite questions about quiz funnels, lead gen, automation, or building a service business. Respond to every comment. This builds relationships and gives you content ideas for next month.</div>
+                            <span class="post-format">AMA (Engagement)</span>
+                        </div>
+                    </div>
+
+                    <div class="post-card instagram">
+                        <div class="post-day">
+                            <div class="post-day-name">Tue</div>
+                            <div class="post-day-dot"></div>
+                        </div>
+                        <div class="post-content">
+                            <span class="post-platform-tag">Instagram</span>
+                            <div class="post-title">User spotlight / testimonial carousel</div>
+                            <div class="post-description">Feature a client or quiz taker. Show their results, their experience, and what they learned. If you do not have a testimonial yet, use a "What quiz takers are saying" format with anonymized insights from quiz data.</div>
+                            <span class="post-format">Carousel (Testimonial, 4 slides)</span>
+                        </div>
+                    </div>
+
+                    <div class="post-card tiktok">
+                        <div class="post-day">
+                            <div class="post-day-name">Wed</div>
+                            <div class="post-day-dot"></div>
+                        </div>
+                        <div class="post-content">
+                            <span class="post-platform-tag">TikTok</span>
+                            <div class="post-title">"Food truck to funnel builder: the full story"</div>
+                            <div class="post-description">Longer origin story. Walk through the full arc: food truck grind, discovering automation, building for yourself, then building for others. This is your signature content piece. Aim for 90-120 seconds.</div>
+                            <span class="post-format">Story (90-120s)</span>
+                        </div>
+                    </div>
+
+                    <div class="post-card linkedin">
+                        <div class="post-day">
+                            <div class="post-day-name">Thu</div>
+                            <div class="post-day-dot"></div>
+                        </div>
+                        <div class="post-content">
+                            <span class="post-platform-tag">LinkedIn</span>
+                            <div class="post-title">"3 things I wish I knew before my first quiz funnel"</div>
+                            <div class="post-description">Lessons learned format. 1: The questions matter more than the design. 2: Scoring logic determines email ROI. 3: A quiz without follow-up emails is just a survey. Honest, practical, positions expertise.</div>
+                            <span class="post-format">Lessons Learned</span>
+                        </div>
+                    </div>
+
+                    <div class="post-card instagram">
+                        <div class="post-day">
+                            <div class="post-day-name">Fri</div>
+                            <div class="post-day-dot"></div>
+                        </div>
+                        <div class="post-content">
+                            <span class="post-platform-tag">Instagram</span>
+                            <div class="post-title">"Week in review: what our quiz data told us"</div>
+                            <div class="post-description">Data share reel. Pull real stats from your quiz analytics dashboard: how many people took the quiz, most common result profile, most surprising answer pattern. Makes you the authority on quiz funnel data.</div>
+                            <span class="post-format">Reel (Data Share)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Key Reminders -->
+        <section>
+            <h2>Key Reminders</h2>
+            <div class="pillars-grid" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));">
+                <div class="pillar-card" style="border-left-color: var(--color-primary);">
+                    <h4>Voice Consistency</h4>
+                    <p>Every post should sound like having expert friends -- fun, professional, relatable. Lead with the food truck story and operator experience. Never sound like an agency pitch deck.</p>
+                </div>
+                <div class="pillar-card" style="border-left-color: var(--color-accent);">
+                    <h4>One CTA Per Post</h4>
+                    <p>Do not ask people to like, share, comment, AND visit a link. Pick one action per post. Awareness posts ask for engagement. Conversion posts drive to the quiz. Keep it simple.</p>
+                </div>
+                <div class="pillar-card" style="border-left-color: var(--color-success);">
+                    <h4>Repurpose Across Platforms</h4>
+                    <p>A LinkedIn case study can become an Instagram carousel and a TikTok. Adapt the format, not the message. Write once, publish three times with platform-native adjustments.</p>
+                </div>
+                <div class="pillar-card" style="border-left-color: var(--color-warning);">
+                    <h4>Track What Works</h4>
+                    <p>After 30 days, review which posts drove quiz completions (check UTM sources in your analytics dashboard). Double down on what converts, retire what does not.</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>30-Day Social Content Strategy for Brothers Automated</p>
+            <p>Part of the Quiz Funnel Strategy Pack</p>
+        </div>
+    </footer>
+</body>
+</html>

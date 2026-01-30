@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Funnel Walkthrough - Brothers Automated</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --color-primary: #2563EB;
+            --color-primary-dark: #1D4ED8;
+            --color-secondary: #1E3A5F;
+            --color-accent: #F97316;
+            --color-bg: #F8FAFC;
+            --color-bg-card: #FFFFFF;
+            --color-text: #1E293B;
+            --color-text-secondary: #64748B;
+            --color-text-muted: #94A3B8;
+            --color-border: #E2E8F0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--color-bg);
+            color: var(--color-text);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 48px 24px;
+        }
+
+        /* Back link */
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: var(--color-primary);
+            text-decoration: none;
+            font-size: 0.875rem;
+            font-weight: 500;
+            margin-bottom: 32px;
+            transition: color 0.2s ease;
+        }
+
+        .back-link:hover {
+            color: var(--color-primary-dark);
+        }
+
+        .back-link svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        /* Header */
+        header {
+            text-align: center;
+            margin-bottom: 48px;
+            padding: 48px 32px;
+            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+            color: white;
+            border-radius: 12px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: -40px;
+            right: -40px;
+            width: 160px;
+            height: 160px;
+            background: rgba(255, 255, 255, 0.06);
+            border-radius: 50%;
+        }
+
+        header::after {
+            content: '';
+            position: absolute;
+            bottom: -60px;
+            left: -20px;
+            width: 200px;
+            height: 200px;
+            background: rgba(255, 255, 255, 0.04);
+            border-radius: 50%;
+        }
+
+        .header-label {
+            display: inline-block;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            background: rgba(255, 255, 255, 0.15);
+            padding: 4px 14px;
+            border-radius: 100px;
+            margin-bottom: 16px;
+            position: relative;
+        }
+
+        h1 {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 12px;
+            position: relative;
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            max-width: 560px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        /* Section titles */
+        .section-header {
+            margin-bottom: 24px;
+        }
+
+        .section-label {
+            display: inline-block;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            padding: 4px 12px;
+            border-radius: 100px;
+            margin-bottom: 12px;
+            background: rgba(37, 99, 235, 0.1);
+            color: var(--color-primary);
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--color-secondary);
+        }
+
+        .section-description {
+            font-size: 0.95rem;
+            color: var(--color-text-secondary);
+            margin-top: 6px;
+        }
+
+        /* Step cards */
+        .steps-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 16px;
+            margin-bottom: 56px;
+        }
+
+        .step-card {
+            background: var(--color-bg-card);
+            border: 1px solid var(--color-border);
+            border-radius: 12px;
+            padding: 28px;
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+            transition: all 0.2s ease;
+        }
+
+        .step-card:hover {
+            border-color: var(--color-primary);
+            box-shadow: 0 4px 16px rgba(37, 99, 235, 0.08);
+            transform: translateY(-2px);
+        }
+
+        .step-number {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+            color: white;
+            font-weight: 700;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .step-content {
+            flex: 1;
+        }
+
+        .step-title {
+            font-size: 1.125rem;
+            font-weight: 700;
+            color: var(--color-text);
+            margin-bottom: 4px;
+        }
+
+        .step-description {
+            font-size: 0.925rem;
+            color: var(--color-text-secondary);
+            line-height: 1.65;
+        }
+
+        /* Value cards */
+        .value-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+            margin-bottom: 56px;
+        }
+
+        .value-card {
+            background: var(--color-bg-card);
+            border: 1px solid var(--color-border);
+            border-radius: 12px;
+            padding: 28px;
+            transition: all 0.2s ease;
+        }
+
+        .value-card:hover {
+            border-color: var(--color-primary);
+            box-shadow: 0 4px 16px rgba(37, 99, 235, 0.08);
+            transform: translateY(-2px);
+        }
+
+        .value-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 10px;
+            background: rgba(37, 99, 235, 0.08);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 16px;
+        }
+
+        .value-icon svg {
+            width: 24px;
+            height: 24px;
+            color: var(--color-primary);
+        }
+
+        .value-title {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--color-text);
+            margin-bottom: 6px;
+        }
+
+        .value-description {
+            font-size: 0.875rem;
+            color: var(--color-text-secondary);
+            line-height: 1.65;
+        }
+
+        /* Channel cards */
+        .channel-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+            margin-bottom: 56px;
+        }
+
+        .channel-card {
+            background: var(--color-bg-card);
+            border: 1px solid var(--color-border);
+            border-radius: 12px;
+            padding: 24px;
+            transition: all 0.2s ease;
+        }
+
+        .channel-card:hover {
+            border-color: var(--color-primary);
+            box-shadow: 0 4px 16px rgba(37, 99, 235, 0.08);
+            transform: translateY(-2px);
+        }
+
+        .channel-title {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--color-text);
+            margin-bottom: 6px;
+        }
+
+        .channel-description {
+            font-size: 0.85rem;
+            color: var(--color-text-secondary);
+            line-height: 1.6;
+        }
+
+        /* Deliverable links */
+        .deliverable-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 12px;
+            margin-bottom: 56px;
+        }
+
+        .deliverable-link {
+            background: var(--color-bg-card);
+            border: 1px solid var(--color-border);
+            border-radius: 10px;
+            padding: 20px 24px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.2s ease;
+            position: relative;
+        }
+
+        .deliverable-link::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: var(--color-primary);
+            border-radius: 10px 0 0 10px;
+            opacity: 0;
+            transition: opacity 0.2s ease;
+        }
+
+        .deliverable-link:hover {
+            border-color: var(--color-primary);
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .deliverable-link:hover::before {
+            opacity: 1;
+        }
+
+        .deliverable-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            background: rgba(37, 99, 235, 0.08);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .deliverable-icon svg {
+            width: 20px;
+            height: 20px;
+            color: var(--color-primary);
+        }
+
+        .deliverable-content {
+            flex: 1;
+        }
+
+        .deliverable-title {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--color-text);
+        }
+
+        .deliverable-meta {
+            font-size: 0.8rem;
+            color: var(--color-text-muted);
+            margin-top: 2px;
+        }
+
+        .deliverable-arrow {
+            width: 20px;
+            height: 20px;
+            color: var(--color-text-muted);
+            flex-shrink: 0;
+            transition: transform 0.2s ease, color 0.2s ease;
+        }
+
+        .deliverable-link:hover .deliverable-arrow {
+            transform: translateX(4px);
+            color: var(--color-primary);
+        }
+
+        /* Stats grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            margin-bottom: 56px;
+        }
+
+        .stat-card {
+            background: var(--color-bg-card);
+            border: 1px solid var(--color-border);
+            border-radius: 12px;
+            padding: 24px;
+            text-align: center;
+            transition: all 0.2s ease;
+        }
+
+        .stat-card:hover {
+            border-color: var(--color-primary);
+            box-shadow: 0 4px 16px rgba(37, 99, 235, 0.08);
+            transform: translateY(-2px);
+        }
+
+        .stat-value {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--color-primary);
+            margin-bottom: 4px;
+        }
+
+        .stat-label {
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: var(--color-text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding-top: 24px;
+            border-top: 1px solid var(--color-border);
+            color: var(--color-text-muted);
+            font-size: 0.875rem;
+        }
+
+        footer p {
+            margin-bottom: 4px;
+        }
+
+        footer a {
+            color: var(--color-primary);
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive */
+        @media (max-width: 640px) {
+            .container {
+                padding: 32px 16px;
+            }
+
+            h1 {
+                font-size: 1.5rem;
+            }
+
+            .subtitle {
+                font-size: 1rem;
+            }
+
+            header {
+                padding: 36px 20px;
+            }
+
+            .section-title {
+                font-size: 1.25rem;
+            }
+
+            .value-grid,
+            .channel-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .step-card {
+                padding: 20px;
+                gap: 16px;
+            }
+
+            .step-number {
+                width: 36px;
+                height: 36px;
+                font-size: 0.9rem;
+            }
+
+            .value-card,
+            .channel-card {
+                padding: 20px;
+            }
+
+            .stat-card {
+                padding: 20px;
+            }
+
+            .stat-value {
+                font-size: 1.75rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+
+        <!-- Back link -->
+        <a href="index.html" class="back-link">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18" />
+            </svg>
+            Back to all documents
+        </a>
+
+        <!-- Header -->
+        <header>
+            <span class="header-label">Quiz Funnel Walkthrough</span>
+            <h1>What's Your Lead Gen Blindspot?</h1>
+            <p class="subtitle">A done-for-you quiz funnel that diagnoses lead generation gaps in your prospects' businesses and routes them to the right Brothers Automated service.</p>
+        </header>
+
+        <!-- How It Works -->
+        <div class="section-header">
+            <span class="section-label">The Flow</span>
+            <h2 class="section-title">How It Works</h2>
+            <p class="section-description">Your quiz funnel guides prospects through 5 steps, from first click to booked call.</p>
+        </div>
+
+        <div class="steps-grid">
+            <div class="step-card">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    <h3 class="step-title">Prospect Lands on the Quiz Page</h3>
+                    <p class="step-description">They arrive from a social post, ad, email, or your website. The landing page hooks them with the question every business owner asks: "What's actually holding my lead gen back?"</p>
+                </div>
+            </div>
+
+            <div class="step-card">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                    <h3 class="step-title">They Answer 7 Questions</h3>
+                    <p class="step-description">A mix of card selections, scale sliders, multiple choice, and toggle questions. Each answer scores their lead gen maturity and tags them into one of 5 profiles. Interactive, quick, and feels like a real diagnostic.</p>
+                </div>
+            </div>
+
+            <div class="step-card">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                    <h3 class="step-title">Email Capture</h3>
+                    <p class="step-description">Before seeing their results, they enter their email. By this point they're invested, so conversion rates are high (typically 40-60% of quiz starters).</p>
+                </div>
+            </div>
+
+            <div class="step-card">
+                <div class="step-number">4</div>
+                <div class="step-content">
+                    <h3 class="step-title">Personalized Results</h3>
+                    <p class="step-description">They see their profile (e.g., "The Overwhelmed Operator" or "The DIY Marketer"), a specific blindspot diagnosis, and a recommended solution. Hot leads get a direct call-to-action. Warm and cold leads get nurture paths.</p>
+                </div>
+            </div>
+
+            <div class="step-card">
+                <div class="step-number">5</div>
+                <div class="step-content">
+                    <h3 class="step-title">Automated Email Nurture</h3>
+                    <p class="step-description">14 emails fire automatically based on their temperature. Hot leads get urgency and case studies. Warm leads get education. Cold leads get value-first content that builds trust over time.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Why It Works -->
+        <div class="section-header">
+            <span class="section-label">The Strategy</span>
+            <h2 class="section-title">Why This Works</h2>
+            <p class="section-description">This isn't a generic lead magnet. Here's what makes it convert.</p>
+        </div>
+
+        <div class="value-grid">
+            <div class="value-card">
+                <div class="value-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
+                    </svg>
+                </div>
+                <h3 class="value-title">Speaks Their Language</h3>
+                <p class="value-description">Each question addresses real small business pain points: no time for marketing, tools that don't talk to each other, leads that don't convert. Prospects feel understood from question one.</p>
+            </div>
+
+            <div class="value-card">
+                <div class="value-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 3v11.25A2.25 2.25 0 0 0 6 16.5h2.25M3.75 3h-1.5m1.5 0h16.5m0 0h1.5m-1.5 0v11.25A2.25 2.25 0 0 1 18 16.5h-2.25m-7.5 0h7.5m-7.5 0-1 3m8.5-3 1 3m0 0 .5 1.5m-.5-1.5h-9.5m0 0-.5 1.5m.5-1.5h9.5M9 11.25v-2.5" />
+                    </svg>
+                </div>
+                <h3 class="value-title">Pre-Qualifies Every Lead</h3>
+                <p class="value-description">Temperature scoring (0-100) automatically sorts leads into hot, warm, and cold segments. Your sales conversations start with context, not cold discovery calls.</p>
+            </div>
+
+            <div class="value-card">
+                <div class="value-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904 9 18.75l-.813-2.846a4.5 4.5 0 0 0-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 0 0 3.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 0 0 3.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 0 0-3.09 3.09ZM18.259 8.715 18 9.75l-.259-1.035a3.375 3.375 0 0 0-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 0 0 2.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 0 0 2.455 2.456L21.75 6l-1.036.259a3.375 3.375 0 0 0-2.455 2.456ZM16.894 20.567 16.5 21.75l-.394-1.183a2.25 2.25 0 0 0-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 0 0 1.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 0 0 1.423 1.423l1.183.394-1.183.394a2.25 2.25 0 0 0-1.423 1.423Z" />
+                    </svg>
+                </div>
+                <h3 class="value-title">Personalized, Not Generic</h3>
+                <p class="value-description">5 distinct result profiles with tailored blindspot diagnosis, messaging, and service recommendations. Each prospect gets advice that feels custom, because it is.</p>
+            </div>
+
+            <div class="value-card">
+                <div class="value-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75" />
+                    </svg>
+                </div>
+                <h3 class="value-title">Nurtures on Autopilot</h3>
+                <p class="value-description">14 emails across 5 sequences (Welcome, Cold Nurture, Warm Activation, Hot Path, Win-Back) fire based on lead temperature. No manual follow-up needed.</p>
+            </div>
+        </div>
+
+        <!-- Where to Use It -->
+        <div class="section-header">
+            <span class="section-label">Distribution</span>
+            <h2 class="section-title">Where to Use It</h2>
+            <p class="section-description">Every channel where your target audience hangs out is a place to drive quiz traffic.</p>
+        </div>
+
+        <div class="channel-grid">
+            <div class="channel-card">
+                <h3 class="channel-title">Website Embed</h3>
+                <p class="channel-description">Add the quiz link or embed to your homepage, services page, or as a pop-up. Turns passive visitors into qualified leads.</p>
+            </div>
+
+            <div class="channel-card">
+                <h3 class="channel-title">Social Media Posts</h3>
+                <p class="channel-description">Share the quiz in LinkedIn posts, Instagram stories, TikTok videos. "Find your lead gen blindspot" is a natural curiosity hook for business owners.</p>
+            </div>
+
+            <div class="channel-card">
+                <h3 class="channel-title">Paid Ads</h3>
+                <p class="channel-description">Run Facebook and Google ads pointing directly to the quiz. Interactive ads with a quiz CTA typically outperform standard lead-gen ads by 2-3x.</p>
+            </div>
+
+            <div class="channel-card">
+                <h3 class="channel-title">Email Signatures</h3>
+                <p class="channel-description">Add a link to the quiz in every email you send. "P.S. Take our 2-minute quiz to find your lead gen blindspot" turns every interaction into a lead gen opportunity.</p>
+            </div>
+
+            <div class="channel-card">
+                <h3 class="channel-title">Partnerships</h3>
+                <p class="channel-description">Share the quiz with complementary businesses (web designers, bookkeepers, business coaches). They share a useful tool with their audience; you get qualified leads.</p>
+            </div>
+
+            <div class="channel-card">
+                <h3 class="channel-title">QR Codes</h3>
+                <p class="channel-description">Print QR codes for business cards, event handouts, or trade show booths. A quick scan starts the qualification process instantly.</p>
+            </div>
+        </div>
+
+        <!-- What You Get -->
+        <div class="section-header">
+            <span class="section-label">Your Package</span>
+            <h2 class="section-title">What You Get</h2>
+            <p class="section-description">Everything included in your quiz funnel package, ready for review.</p>
+        </div>
+
+        <div class="deliverable-grid">
+            <a href="research.html" class="deliverable-link">
+                <div class="deliverable-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m5.231 13.481L15 17.25m-4.5-15H5.625c-.621 0-1.125.504-1.125 1.125v16.5c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Zm3.75 11.625a2.625 2.625 0 1 1-5.25 0 2.625 2.625 0 0 1 5.25 0Z" />
+                    </svg>
+                </div>
+                <div class="deliverable-content">
+                    <span class="deliverable-title">Research Report</span>
+                    <span class="deliverable-meta">Market research, customer segments, SEO keywords, competitive analysis</span>
+                </div>
+                <svg class="deliverable-arrow" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
+                </svg>
+            </a>
+
+            <a href="email-sequences.html" class="deliverable-link">
+                <div class="deliverable-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75" />
+                    </svg>
+                </div>
+                <div class="deliverable-content">
+                    <span class="deliverable-title">Email Sequences</span>
+                    <span class="deliverable-meta">14 emails across 5 sequences with full copy and timing</span>
+                </div>
+                <svg class="deliverable-arrow" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
+                </svg>
+            </a>
+
+            <a href="quiz-copy-explainer.html" class="deliverable-link">
+                <div class="deliverable-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 5.25h.008v.008H12v-.008Z" />
+                    </svg>
+                </div>
+                <div class="deliverable-content">
+                    <span class="deliverable-title">Quiz Copy Explainer</span>
+                    <span class="deliverable-meta">Question rationale, answer psychology, scoring logic</span>
+                </div>
+                <svg class="deliverable-arrow" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
+                </svg>
+            </a>
+
+            <a href="ways-to-grow.html" class="deliverable-link">
+                <div class="deliverable-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 18 9 11.25l4.306 4.306a11.95 11.95 0 0 1 5.814-5.518l2.74-1.22m0 0-5.94-2.281m5.94 2.28-2.28 5.941" />
+                    </svg>
+                </div>
+                <div class="deliverable-content">
+                    <span class="deliverable-title">Ways to Grow</span>
+                    <span class="deliverable-meta">Included features and growth add-on services</span>
+                </div>
+                <svg class="deliverable-arrow" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
+                </svg>
+            </a>
+
+            <a href="ad-strategy.html" class="deliverable-link">
+                <div class="deliverable-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M10.34 15.84c-.688-.06-1.386-.09-2.09-.09H7.5a4.5 4.5 0 1 1 0-9h.75c.704 0 1.402-.03 2.09-.09m0 9.18c.253.962.584 1.892.985 2.783.247.55.06 1.21-.463 1.511l-.657.38c-.551.318-1.26.117-1.527-.461a20.845 20.845 0 0 1-1.44-4.282m3.102.069a18.03 18.03 0 0 1-.59-4.59c0-1.586.205-3.124.59-4.59m0 9.18a23.848 23.848 0 0 1 8.835 2.535M10.34 6.66a23.847 23.847 0 0 0 8.835-2.535m0 0A23.74 23.74 0 0 0 18.795 3m.38 1.125a23.91 23.91 0 0 1 1.014 5.395m-1.014 8.855c-.118.38-.245.754-.38 1.125m.38-1.125a23.91 23.91 0 0 0 1.014-5.395m0-3.46c.495.413.811 1.035.811 1.73 0 .695-.316 1.317-.811 1.73m0-3.46a24.347 24.347 0 0 1 0 3.46" />
+                    </svg>
+                </div>
+                <div class="deliverable-content">
+                    <span class="deliverable-title">Ad Strategy</span>
+                    <span class="deliverable-meta">Google and Facebook/Instagram ad variations</span>
+                </div>
+                <svg class="deliverable-arrow" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
+                </svg>
+            </a>
+
+            <a href="social-content.html" class="deliverable-link">
+                <div class="deliverable-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5" />
+                    </svg>
+                </div>
+                <div class="deliverable-content">
+                    <span class="deliverable-title">Social Content Strategy</span>
+                    <span class="deliverable-meta">30-day content calendar and platform strategy</span>
+                </div>
+                <svg class="deliverable-arrow" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
+                </svg>
+            </a>
+
+            <a href="sales-scripts.html" class="deliverable-link">
+                <div class="deliverable-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M20.25 8.511c.884.284 1.5 1.128 1.5 2.097v4.286c0 1.136-.847 2.1-1.98 2.193-.34.027-.68.052-1.02.072v3.091l-3-3c-1.354 0-2.694-.055-4.02-.163a2.115 2.115 0 0 1-.825-.242m9.345-8.334a2.126 2.126 0 0 0-.476-.095 48.64 48.64 0 0 0-8.048 0c-1.131.094-1.976 1.057-1.976 2.192v4.286c0 .837.46 1.58 1.155 1.951m9.345-8.334V6.637c0-1.621-1.152-3.026-2.76-3.235A48.455 48.455 0 0 0 11.25 3c-2.115 0-4.198.137-6.24.402-1.608.209-2.76 1.614-2.76 3.235v6.226c0 1.621 1.152 3.026 2.76 3.235.577.075 1.157.14 1.74.194V21l4.155-4.155" />
+                    </svg>
+                </div>
+                <div class="deliverable-content">
+                    <span class="deliverable-title">Sales Scripts</span>
+                    <span class="deliverable-meta">Temperature-based conversation frameworks</span>
+                </div>
+                <svg class="deliverable-arrow" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
+                </svg>
+            </a>
+        </div>
+
+        <!-- Quick Stats -->
+        <div class="section-header">
+            <span class="section-label">At a Glance</span>
+            <h2 class="section-title">Quick Stats</h2>
+        </div>
+
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-value">7</div>
+                <div class="stat-label">Quiz Questions</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value">5</div>
+                <div class="stat-label">Result Profiles</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value">14</div>
+                <div class="stat-label">Email Sequences</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value">5</div>
+                <div class="stat-label">Email Flows</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value">3</div>
+                <div class="stat-label">Temperature Bands</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value">100</div>
+                <div class="stat-label">Max Score</div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer>
+            <p>Brothers Automated Quiz Funnel Package</p>
+            <p><a href="index.html">Back to all documents</a></p>
+        </footer>
+    </div>
+</body>
+</html>

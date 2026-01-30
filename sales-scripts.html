@@ -1,0 +1,898 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sales Conversation Scripts - Brothers Automated</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --color-primary: #2563EB;
+            --color-primary-dark: #1D4ED8;
+            --color-secondary: #1E3A5F;
+            --color-accent: #F97316;
+            --color-bg: #F8FAFC;
+            --color-bg-card: #FFFFFF;
+            --color-text: #1E293B;
+            --color-text-secondary: #64748B;
+            --color-text-muted: #94A3B8;
+            --color-border: #E2E8F0;
+            --color-hot: #10B981;
+            --color-hot-bg: #D1FAE5;
+            --color-hot-border: #6EE7B7;
+            --color-warm: #F59E0B;
+            --color-warm-bg: #FEF3C7;
+            --color-warm-border: #FCD34D;
+            --color-cold: #3B82F6;
+            --color-cold-bg: #DBEAFE;
+            --color-cold-border: #93C5FD;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--color-bg);
+            color: var(--color-text);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Back Link */
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            font-size: 0.875rem;
+            font-weight: 500;
+            margin-bottom: 20px;
+            transition: color 0.2s;
+        }
+
+        .back-link:hover {
+            color: #FFFFFF;
+        }
+
+        .back-link svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+            color: #FFFFFF;
+            padding: 60px 0;
+            margin-bottom: 40px;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 12px;
+        }
+
+        header .subtitle {
+            font-size: 1.25rem;
+            opacity: 0.9;
+            margin-bottom: 24px;
+        }
+
+        .header-badge {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 8px 16px;
+            border-radius: 100px;
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+
+        /* Sections */
+        section {
+            background: var(--color-bg-card);
+            border-radius: 16px;
+            padding: 32px;
+            margin-bottom: 32px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        section h2 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--color-secondary);
+            margin-bottom: 24px;
+            padding-bottom: 12px;
+            border-bottom: 3px solid var(--color-primary);
+            display: inline-block;
+        }
+
+        section h3 {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: var(--color-text);
+            margin: 24px 0 12px;
+        }
+
+        /* Temperature Overview Cards */
+        .temp-overview-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
+        }
+
+        .temp-overview-card {
+            border-radius: 16px;
+            padding: 24px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .temp-overview-card.hot {
+            background: linear-gradient(135deg, #D1FAE5 0%, #A7F3D0 100%);
+            border: 2px solid var(--color-hot);
+        }
+
+        .temp-overview-card.warm {
+            background: linear-gradient(135deg, #FEF3C7 0%, #FDE68A 100%);
+            border: 2px solid var(--color-warm);
+        }
+
+        .temp-overview-card.cold {
+            background: linear-gradient(135deg, #DBEAFE 0%, #BFDBFE 100%);
+            border: 2px solid var(--color-cold);
+        }
+
+        .temp-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 100px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 12px;
+            color: #FFFFFF;
+        }
+
+        .temp-badge.hot { background: var(--color-hot); }
+        .temp-badge.warm { background: var(--color-warm); }
+        .temp-badge.cold { background: var(--color-cold); }
+
+        .temp-overview-card h4 {
+            font-size: 1.125rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: var(--color-text);
+        }
+
+        .temp-detail-list {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .temp-detail-list li {
+            padding: 6px 0;
+            padding-left: 20px;
+            position: relative;
+            font-size: 0.9rem;
+            color: var(--color-text);
+        }
+
+        .temp-detail-list li::before {
+            content: ">";
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+            color: var(--color-text-secondary);
+        }
+
+        /* Script Sections */
+        .script-section {
+            border-radius: 16px;
+            padding: 32px;
+            margin-bottom: 32px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .script-section.hot-section {
+            background: var(--color-bg-card);
+            border-left: 6px solid var(--color-hot);
+        }
+
+        .script-section.warm-section {
+            background: var(--color-bg-card);
+            border-left: 6px solid var(--color-warm);
+        }
+
+        .script-section.cold-section {
+            background: var(--color-bg-card);
+            border-left: 6px solid var(--color-cold);
+        }
+
+        .script-section h2 {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            border-bottom: none;
+            padding-bottom: 0;
+            margin-bottom: 8px;
+        }
+
+        .script-section .section-subtitle {
+            color: var(--color-text-secondary);
+            font-size: 0.9375rem;
+            margin-bottom: 28px;
+        }
+
+        .script-label {
+            font-size: 0.6875rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            padding: 4px 10px;
+            border-radius: 4px;
+            margin-bottom: 8px;
+            display: inline-block;
+        }
+
+        .script-label.hot {
+            background: rgba(16, 185, 129, 0.1);
+            color: var(--color-hot);
+        }
+
+        .script-label.warm {
+            background: rgba(245, 158, 11, 0.1);
+            color: var(--color-warm);
+        }
+
+        .script-label.cold {
+            background: rgba(59, 130, 246, 0.1);
+            color: var(--color-cold);
+        }
+
+        /* Script Blocks (blockquote styling) */
+        .script-block {
+            background: var(--color-bg);
+            border-left: 4px solid var(--color-border);
+            border-radius: 0 8px 8px 0;
+            padding: 20px 24px;
+            margin: 16px 0;
+            font-style: italic;
+            color: var(--color-text);
+            font-size: 0.9375rem;
+            line-height: 1.7;
+        }
+
+        .script-block.hot-accent {
+            border-left-color: var(--color-hot);
+            background: rgba(16, 185, 129, 0.04);
+        }
+
+        .script-block.warm-accent {
+            border-left-color: var(--color-warm);
+            background: rgba(245, 158, 11, 0.04);
+        }
+
+        .script-block.cold-accent {
+            border-left-color: var(--color-cold);
+            background: rgba(59, 130, 246, 0.04);
+        }
+
+        /* Discovery Questions */
+        .discovery-list {
+            list-style: none;
+            padding: 0;
+            margin: 16px 0;
+        }
+
+        .discovery-list li {
+            background: var(--color-bg);
+            border: 1px solid var(--color-border);
+            border-radius: 8px;
+            padding: 16px 20px;
+            margin-bottom: 12px;
+            display: flex;
+            gap: 14px;
+            align-items: flex-start;
+        }
+
+        .discovery-number {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8125rem;
+            font-weight: 700;
+            flex-shrink: 0;
+            color: #FFFFFF;
+        }
+
+        .discovery-number.hot { background: var(--color-hot); }
+        .discovery-number.warm { background: var(--color-warm); }
+        .discovery-number.cold { background: var(--color-cold); }
+
+        .discovery-text {
+            font-style: italic;
+            color: var(--color-text);
+            font-size: 0.9375rem;
+            line-height: 1.6;
+        }
+
+        /* Objection Cards */
+        .objection-card {
+            background: var(--color-bg);
+            border: 1px solid var(--color-border);
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 16px;
+            transition: box-shadow 0.2s;
+        }
+
+        .objection-card:hover {
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+        }
+
+        .objection-trigger {
+            font-weight: 700;
+            color: var(--color-secondary);
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.9375rem;
+        }
+
+        .objection-trigger::before {
+            content: '';
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+
+        .hot-section .objection-trigger::before {
+            background: var(--color-hot);
+        }
+
+        .warm-section .objection-trigger::before {
+            background: var(--color-warm);
+        }
+
+        .objection-response {
+            font-style: italic;
+            color: var(--color-text);
+            padding-left: 16px;
+            border-left: 3px solid var(--color-border);
+            font-size: 0.9375rem;
+            line-height: 1.7;
+        }
+
+        /* Conditional Blocks */
+        .conditional-block {
+            background: var(--color-bg);
+            border: 1px solid var(--color-border);
+            border-radius: 12px;
+            padding: 20px 24px;
+            margin-bottom: 16px;
+        }
+
+        .conditional-label {
+            font-weight: 700;
+            font-size: 0.8125rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 8px;
+        }
+
+        .conditional-label.warm { color: var(--color-warm); }
+        .conditional-label.cold { color: var(--color-cold); }
+
+        /* Common Objections Table */
+        .table-wrapper {
+            overflow-x: auto;
+            margin: 16px 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.9375rem;
+        }
+
+        th, td {
+            padding: 16px 20px;
+            text-align: left;
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        th {
+            background: var(--color-bg);
+            font-weight: 600;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--color-text-secondary);
+        }
+
+        td {
+            vertical-align: top;
+        }
+
+        tr:hover td {
+            background: var(--color-bg);
+        }
+
+        td:first-child {
+            font-weight: 600;
+            color: var(--color-secondary);
+            white-space: nowrap;
+            width: 200px;
+        }
+
+        td:last-child {
+            font-style: italic;
+            line-height: 1.7;
+        }
+
+        /* Tip Boxes */
+        .tip-box {
+            background: rgba(37, 99, 235, 0.05);
+            border-left: 3px solid var(--color-primary);
+            padding: 16px 20px;
+            border-radius: 0 8px 8px 0;
+            margin: 20px 0;
+            font-size: 0.9375rem;
+        }
+
+        .tip-box strong {
+            color: var(--color-secondary);
+        }
+
+        .tip-box.hot-tip {
+            background: rgba(16, 185, 129, 0.05);
+            border-left-color: var(--color-hot);
+        }
+
+        .tip-box.warm-tip {
+            background: rgba(245, 158, 11, 0.05);
+            border-left-color: var(--color-warm);
+        }
+
+        .tip-box.cold-tip {
+            background: rgba(59, 130, 246, 0.05);
+            border-left-color: var(--color-cold);
+        }
+
+        /* Section Divider */
+        .section-divider {
+            height: 1px;
+            background: var(--color-border);
+            margin: 28px 0;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 40px 0;
+            color: var(--color-text-secondary);
+            font-size: 0.875rem;
+        }
+
+        footer p {
+            margin-bottom: 8px;
+        }
+
+        /* Responsive */
+        @media (max-width: 640px) {
+            header {
+                padding: 40px 0;
+            }
+
+            header h1 {
+                font-size: 1.75rem;
+            }
+
+            header .subtitle {
+                font-size: 1rem;
+            }
+
+            .container {
+                padding: 0 16px;
+            }
+
+            section,
+            .script-section {
+                padding: 20px;
+                border-radius: 12px;
+            }
+
+            .temp-overview-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .script-block {
+                padding: 16px;
+            }
+
+            .discovery-list li {
+                padding: 12px 16px;
+            }
+
+            .objection-card {
+                padding: 16px;
+            }
+
+            table {
+                font-size: 0.8125rem;
+            }
+
+            th, td {
+                padding: 10px 12px;
+            }
+
+            td:first-child {
+                white-space: normal;
+                width: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <a href="index.html" class="back-link">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18" />
+                </svg>
+                Back to all documents
+            </a>
+            <h1>Sales Conversation Scripts</h1>
+            <p class="subtitle">Temperature-based frameworks for converting quiz leads into customers.</p>
+            <span class="header-badge">Strategy Pack - Brothers Automated</span>
+        </div>
+    </header>
+
+    <main class="container">
+
+        <!-- Section 1: Lead Temperature Overview -->
+        <section>
+            <h2>Lead Temperature Overview</h2>
+            <p style="color: var(--color-text-secondary); margin-bottom: 24px;">
+                The "What's Your Lead Gen Blindspot?" quiz scores each lead from 0-100 and assigns a temperature. Use the matching script framework below for each conversation.
+            </p>
+
+            <div class="temp-overview-grid">
+                <div class="temp-overview-card hot">
+                    <span class="temp-badge hot">HOT -- 80-100</span>
+                    <h4>Ready to Buy</h4>
+                    <ul class="temp-detail-list">
+                        <li><strong>Focus:</strong> Logistics and closing</li>
+                        <li><strong>Timeline:</strong> This week</li>
+                        <li><strong>Approach:</strong> Direct, action-oriented</li>
+                        <li><strong>Mindset:</strong> "I need this solved now"</li>
+                        <li><strong>Your goal:</strong> Remove friction, book the call, close</li>
+                    </ul>
+                </div>
+
+                <div class="temp-overview-card warm">
+                    <span class="temp-badge warm">WARM -- 50-79</span>
+                    <h4>Interested but Hesitant</h4>
+                    <ul class="temp-detail-list">
+                        <li><strong>Focus:</strong> Proof and nurturing</li>
+                        <li><strong>Timeline:</strong> 2-4 weeks</li>
+                        <li><strong>Approach:</strong> Educational, build trust</li>
+                        <li><strong>Mindset:</strong> "I'm exploring options"</li>
+                        <li><strong>Your goal:</strong> Demonstrate value, earn a follow-up</li>
+                    </ul>
+                </div>
+
+                <div class="temp-overview-card cold">
+                    <span class="temp-badge cold">COLD -- 0-49</span>
+                    <h4>Problem-Aware</h4>
+                    <ul class="temp-detail-list">
+                        <li><strong>Focus:</strong> Education and value</li>
+                        <li><strong>Timeline:</strong> 1-3 months</li>
+                        <li><strong>Approach:</strong> Patient, value-first</li>
+                        <li><strong>Mindset:</strong> "I know something is off"</li>
+                        <li><strong>Your goal:</strong> Help freely, stay on their radar</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: HOT Lead Script -->
+        <div class="script-section hot-section">
+            <h2>
+                <span class="temp-badge hot">HOT</span>
+                Hot Lead Script (80-100)
+            </h2>
+            <p class="section-subtitle">These leads are ready. They have budget, urgency, and a clear problem. Your job is to make it easy to say yes.</p>
+
+            <!-- Opening -->
+            <h3>Opening</h3>
+            <span class="script-label hot">First Contact</span>
+            <div class="script-block hot-accent">
+                "Hey [Name], I saw you completed our Lead Gen Blindspot quiz and scored as [Profile Name]. That tells me you're [key characteristic based on profile]. I'm curious - what prompted you to take the quiz?"
+            </div>
+
+            <div class="tip-box hot-tip">
+                <strong>Profile-specific openers:</strong> Tailor the bracketed text.
+                For <strong>The Overwhelmed Operator</strong>: "...you're juggling everything and lead gen keeps falling to the bottom of the list."
+                For <strong>The Growth-Ready Investor</strong>: "...you've built a solid business and you're ready to put a real system behind your growth."
+                For <strong>The DIY Marketer</strong>: "...you've tried a lot of tools but haven't cracked the code on consistent leads yet."
+            </div>
+
+            <div class="section-divider"></div>
+
+            <!-- Discovery Questions -->
+            <h3>Discovery Questions</h3>
+            <span class="script-label hot">Qualify and Confirm</span>
+            <ul class="discovery-list">
+                <li>
+                    <span class="discovery-number hot">1</span>
+                    <span class="discovery-text">"What's your timeline for getting your lead generation sorted?"</span>
+                </li>
+                <li>
+                    <span class="discovery-number hot">2</span>
+                    <span class="discovery-text">"Have you set aside budget for this, or are you still exploring?"</span>
+                </li>
+                <li>
+                    <span class="discovery-number hot">3</span>
+                    <span class="discovery-text">"Are you the decision-maker, or do you need to loop anyone else in?"</span>
+                </li>
+            </ul>
+
+            <div class="tip-box hot-tip">
+                <strong>Why these three:</strong> Timeline confirms urgency. Budget confirms readiness. Decision-maker confirms you can close. If all three check out, move directly to the close.
+            </div>
+
+            <div class="section-divider"></div>
+
+            <!-- Objection Handling -->
+            <h3>Objection Handling</h3>
+            <span class="script-label hot">Overcome and Close</span>
+
+            <div class="objection-card">
+                <div class="objection-trigger">"It's expensive"</div>
+                <div class="objection-response">
+                    "I get it. Let me ask you this - how much is it costing you right now NOT to have a system? If you're spending 10+ hours a week on lead gen, that's worth way more than $2,500. We build the system once and it works for you indefinitely."
+                </div>
+            </div>
+
+            <div class="objection-card">
+                <div class="objection-trigger">"I need to think about it"</div>
+                <div class="objection-response">
+                    "Totally fair. What specifically do you want to think through? Sometimes it helps to talk it out. Is it the investment, the timing, or something about how it works?"
+                </div>
+            </div>
+
+            <div class="objection-card">
+                <div class="objection-trigger">"I've been burned by agencies before"</div>
+                <div class="objection-response">
+                    "That's actually why we started this company. We're not an agency - we're two brothers who ran a business ourselves. We know what it's like when someone over-promises. Want me to show you exactly what you'd get, step by step?"
+                </div>
+            </div>
+
+            <div class="section-divider"></div>
+
+            <!-- Close -->
+            <h3>Close</h3>
+            <span class="script-label hot">Seal the Deal</span>
+            <div class="script-block hot-accent">
+                "Based on what you've shared, I think our done-for-you quiz funnel is exactly what you need. Here's how it works: we handle everything - strategy, copy, design, tech, email sequences. You get a complete system in 7 days. Want me to send over the details so we can get started?"
+            </div>
+
+            <div class="tip-box hot-tip">
+                <strong>Key principle:</strong> Hot leads want clarity and speed. Don't over-explain. State the offer, the timeline, and the next step. If they say yes, send the onboarding link immediately while they're still on the call.
+            </div>
+        </div>
+
+        <!-- Section 3: WARM Lead Script -->
+        <div class="script-section warm-section">
+            <h2>
+                <span class="temp-badge warm">WARM</span>
+                Warm Lead Script (50-79)
+            </h2>
+            <p class="section-subtitle">These leads are interested but not ready to commit. They need proof, trust, and a reason to move forward. Don't rush them.</p>
+
+            <!-- Opening -->
+            <h3>Opening</h3>
+            <span class="script-label warm">First Contact</span>
+            <div class="script-block warm-accent">
+                "Hey [Name], thanks for taking our Lead Gen Blindspot quiz! Your results showed you're [Profile Name]. I'm reaching out because I noticed [specific insight from their profile]. No pressure at all - just wanted to see if you had any questions."
+            </div>
+
+            <div class="tip-box warm-tip">
+                <strong>Tone matters here.</strong> Warm leads are wary of being sold to. Open with genuine curiosity and low pressure. The phrase "no pressure at all" disarms their defenses and opens the door to a real conversation.
+            </div>
+
+            <div class="section-divider"></div>
+
+            <!-- Discovery Questions -->
+            <h3>Discovery Questions</h3>
+            <span class="script-label warm">Understand Their World</span>
+            <ul class="discovery-list">
+                <li>
+                    <span class="discovery-number warm">1</span>
+                    <span class="discovery-text">"What's your biggest frustration with lead generation right now?"</span>
+                </li>
+                <li>
+                    <span class="discovery-number warm">2</span>
+                    <span class="discovery-text">"Have you tried any tools or approaches before?"</span>
+                </li>
+                <li>
+                    <span class="discovery-number warm">3</span>
+                    <span class="discovery-text">"If you could wave a magic wand, what would your lead gen look like?"</span>
+                </li>
+            </ul>
+
+            <div class="tip-box warm-tip">
+                <strong>Listen more than you talk.</strong> These questions get them describing their ideal state. When they paint that picture, you can later connect it to the solution. The magic wand question is especially powerful because it gets them to articulate what they actually want.
+            </div>
+
+            <div class="section-divider"></div>
+
+            <!-- Conditional Responses -->
+            <h3>Conditional Responses</h3>
+            <span class="script-label warm">Read the Room</span>
+
+            <div class="conditional-block">
+                <div class="conditional-label warm">If Not Ready</div>
+                <div class="script-block warm-accent" style="margin-top: 8px;">
+                    "Totally understand. Let me send you [resource] that addresses [their concern]. It's free, no strings. When you're ready to explore further, I'm here."
+                </div>
+            </div>
+
+            <div class="conditional-block">
+                <div class="conditional-label warm">If Warming Up</div>
+                <div class="script-block warm-accent" style="margin-top: 8px;">
+                    "Would you like to see how this worked for someone similar to you? I can share a quick case study that shows the before and after."
+                </div>
+            </div>
+
+            <div class="section-divider"></div>
+
+            <!-- Transition to Close -->
+            <h3>Transition to Close</h3>
+            <span class="script-label warm">Soft Ask</span>
+            <div class="script-block warm-accent">
+                "Based on what you've told me, I think you'd benefit from [specific recommendation]. Want to hop on a quick 15-minute call this week to walk through it?"
+            </div>
+
+            <div class="tip-box warm-tip">
+                <strong>Key principle:</strong> Warm leads convert through trust, not urgency. Always give them an easy out ("no pressure"), offer proof before asking for commitment, and make the next step feel small (15 minutes, not a sales call).
+            </div>
+        </div>
+
+        <!-- Section 4: COLD Lead Script -->
+        <div class="script-section cold-section">
+            <h2>
+                <span class="temp-badge cold">COLD</span>
+                Cold Lead Script (0-49)
+            </h2>
+            <p class="section-subtitle">These leads know they have a problem but aren't looking for a solution yet. Play the long game. Give value freely and stay on their radar.</p>
+
+            <!-- Opening -->
+            <h3>Opening</h3>
+            <span class="script-label cold">First Contact</span>
+            <div class="script-block cold-accent">
+                "Hey [Name], saw you took our Lead Gen Blindspot quiz. No pressure at all - I'm just here to help if you have questions about your results."
+            </div>
+
+            <div class="tip-box cold-tip">
+                <strong>Rule of thumb:</strong> If a cold lead responds, treat it like gold. They're curious enough to engage. Keep the conversation going without any mention of services.
+            </div>
+
+            <div class="section-divider"></div>
+
+            <!-- Education Focus -->
+            <h3>Education Focus</h3>
+            <span class="script-label cold">Give Before You Ask</span>
+
+            <div class="conditional-block">
+                <div class="conditional-label cold">Free Tip Based on Profile</div>
+                <p style="margin-top: 8px; color: var(--color-text-secondary); font-size: 0.9375rem;">Share one actionable insight based on their quiz result. Don't pitch. Just help.</p>
+            </div>
+
+            <div class="script-block cold-accent">
+                "Here's something that might help right now: [profile-specific free tip]. No strings attached."
+            </div>
+
+            <div class="tip-box cold-tip">
+                <strong>Profile-specific tips:</strong><br>
+                <strong>The Overwhelmed Operator:</strong> "One thing that helps: block 30 minutes every Monday morning just for lead gen. Even a small consistent effort beats sporadic big pushes."<br>
+                <strong>The DIY Marketer:</strong> "Quick win: audit your email signup form. If it just says 'Subscribe to our newsletter,' swap it for a specific promise like 'Get 3 lead gen tips every Tuesday.'"<br>
+                <strong>The Scaling Struggler:</strong> "Here's a framework: before following up with any lead, ask 'Do I know their biggest problem?' If not, your follow-up won't land."<br>
+                <strong>The Tech-Hesitant Traditionalist:</strong> "You don't need fancy tech. Start with one thing: a simple Google Form that asks 3 questions. That alone qualifies leads better than most websites."<br>
+                <strong>The Growth-Ready Investor:</strong> "Here's what separates good funnels from great ones: segmentation. When you know WHO your lead is before the first email, conversion doubles."
+            </div>
+
+            <div class="section-divider"></div>
+
+            <!-- Long-Game Approach -->
+            <h3>Long-Game Approach</h3>
+            <span class="script-label cold">Stay on Their Radar</span>
+            <div class="script-block cold-accent">
+                "When you're ready to explore [solution], I'm here. In the meantime, we send out a weekly email with lead gen tips. Want me to add you?"
+            </div>
+
+            <div class="conditional-block">
+                <div class="conditional-label cold">30-Day Check-In</div>
+                <div class="script-block cold-accent" style="margin-top: 8px;">
+                    "Hey [Name], just checking in. How's your lead gen going? No agenda - genuinely curious if that tip helped."
+                </div>
+            </div>
+
+            <div class="tip-box cold-tip">
+                <strong>Key principle:</strong> Cold leads are a 1-3 month play. The worst thing you can do is push. The best thing you can do is be so helpful that when they ARE ready, you're the only person they think of. Every touchpoint should deliver value with zero sales pressure.
+            </div>
+        </div>
+
+        <!-- Section 5: Common Objections Table -->
+        <section>
+            <h2>Common Objections -- All Temperatures</h2>
+            <p style="color: var(--color-text-secondary); margin-bottom: 24px;">
+                These objections come up regardless of lead temperature. Use these responses as frameworks - adapt the tone to match how warm or cold the lead is.
+            </p>
+
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Objection</th>
+                            <th>Response Framework</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>"Too expensive"</td>
+                            <td>"I understand. Let me ask - what is it costing you right now to NOT have a system? Most of our clients were spending 10+ hours a week on manual lead gen. At $50/hr, that's $2,000/month. Our system pays for itself in 5 weeks."</td>
+                        </tr>
+                        <tr>
+                            <td>"Need to think about it"</td>
+                            <td>"Of course. What specifically would help you decide? I'm happy to send over more details, a case study, or jump on a quick call to answer questions."</td>
+                        </tr>
+                        <tr>
+                            <td>"Talked to a competitor"</td>
+                            <td>"Smart to shop around. Curious - what are you comparing? Most of our clients looked at DIY tools ($30-200/mo but requires your time) and premium agencies ($5,000+). We're the sweet spot: done-for-you at a fair price."</td>
+                        </tr>
+                        <tr>
+                            <td>"Not the right time"</td>
+                            <td>"No worries at all. When do you think would be a better time? I'll make a note to check in then. In the meantime, want our free guide on lead gen fundamentals?"</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="tip-box">
+                <strong>Universal objection-handling formula:</strong> Acknowledge the concern (never dismiss it). Ask a clarifying question to understand the real objection. Reframe with a specific data point or comparison. Offer a low-commitment next step. The goal is never to "win" the argument - it's to keep the conversation going.
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>Sales Conversation Scripts for Brothers Automated Quiz Funnel</p>
+            <p>Part of the Strategy Pack - generated for client delivery</p>
+        </div>
+    </footer>
+</body>
+</html>
